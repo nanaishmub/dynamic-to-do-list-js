@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function(addTask){
+document.addEventListener('DOMContentLoaded', function(){
     const addButton = document.getElementById('add-task-btn');
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
@@ -16,9 +16,11 @@ document.addEventListener('DOMContentLoaded', function(addTask){
         }
     }
 
+    addButton.addEventListener('click', addTask);
+
     taskInput.addEventListener('keypress', (event) => { //listens a key to be pressed
-        if (enter.key = 'ENTER'){ // if the key is pressed, the fucntion, addTask will be invoked.
-            addButton.addEventListener('click', addTask);
+        if (event.key = 'ENTER'){ // if the key is pressed, the fucntion, addTask will be invoked.
+            addTask();
         }
     })
 })
