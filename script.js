@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function(){
     addButton.addEventListener('click', addTask);
 
     taskInput.addEventListener('keypress', (event) => { //listens a key to be pressed
-        if (event.key = 'ENTER'){ // if the key is pressed, the fucntion, addTask will be invoked.
+        if (event.key = 'Enter'){ // if the key is pressed, the fucntion, addTask will be invoked.
             addTask();
         }
     })
