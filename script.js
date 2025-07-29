@@ -2,8 +2,13 @@ document.addEventListener('DOMContentLoaded', function(){
     const addButton = document.getElementById('add-task-btn');
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
+    
+    function loadTasks(){
+        const taskArray = JSON.parse(localStorage.getItem('tasks') || []);
+        taskArray.forEach(taskText => addTask(taskText, false));
+    }
 
-    function addTask(){
+    function addTask(taskText, save = true){
         let taskText = taskInput.value.trim(); //retrieves input value from the input element
 
         if (taskText.textContent === ''){
@@ -11,8 +16,14 @@ document.addEventListener('DOMContentLoaded', function(){
         }else{
             let list = document.createElement('li').textContent = taskText; //creates an li element
             let removeBtn = document.createElement('button').classList.add('remove-btn').textContent = 'Remove'; //creates a button, gives it a class name of remove-btn and sets it's text content to Remove
-            removeBtn.setAttribute('onclick', taskList.removeChild(list)); // sets an onclick event so that when the button is clicked it the list element is removed
+            removeBtn.setAttribute('onclick', taskList.removeChild(list), taskArray.pop(taskText)); // sets an onclick event so that when the button is clicked it the list element is removed
             taskList.appendChild(list); // appends list to taskList
+        }
+
+        if (save){
+            const taskArray = JSON.parse(localStorage.getItem('tasks') || []);
+            taskArray.push(taskText);
+            localStorage.setItem('tasks', JSON.stringify(taskArray));
         }
     }
 
@@ -23,4 +34,7 @@ document.addEventListener('DOMContentLoaded', function(){
             addTask();
         }
     })
+
+    
+
 })
